@@ -414,19 +414,10 @@
 
     /* SKILLS — glass cards */
     .skills .bg-photo{
-      background-image:url('bar-atmosphere-mobile.jpg');
+      background-image:url('cocktail-mobile.jpg');
       background-position:center center;background-size:cover;
-      background-attachment:scroll;
-      opacity:.95;mix-blend-mode:normal;
-      filter:saturate(1.1) contrast(1.1) brightness(.9);
-    }
-    /* Tone down the red so image is the star */
-    .skills{background:#3a0a0e}
-    .skills::before{
-      background:
-        radial-gradient(45% 50% at 80% 15%, rgba(220,38,38,.18) 0%, transparent 70%),
-        radial-gradient(40% 55% at 15% 85%, rgba(0,0,0,.40) 0%, transparent 70%),
-        linear-gradient(180deg, rgba(220,38,38,.12) 0%, rgba(0,0,0,.35) 100%);
+      opacity:.55;mix-blend-mode:soft-light;
+      filter:saturate(1.08) contrast(1.08);
     }
     .skills-grid{grid-template-columns:1fr;gap:12px;background:transparent;border:none}
     .skill{
