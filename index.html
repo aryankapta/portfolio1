@@ -44,8 +44,9 @@
   /* HERO */
   .hero{
     position:relative;background:var(--black);color:#fff;
-    padding:120px 40px 0;overflow:hidden;
+    padding:90px 0 0;overflow:hidden;
   }
+  .hero-inner{padding:0 40px}
   .hero .grid-bg{
     position:absolute;inset:0;
     background-image:
@@ -94,17 +95,17 @@
   .btn.dark{background:var(--black);color:#fff;border-color:var(--black)}
   .btn.dark:hover{background:transparent;color:var(--black)}
 
-  /* Hero figure — landscape portrait, head fully visible, torn edges + maroon glow */
+  /* Hero figure — FULL viewport width, head fully visible, maroon glow (no torn edges) */
   .hero .figure{
-    position:relative;width:100%;max-width:640px;aspect-ratio:16/9;
-    overflow:hidden;display:block;border-radius:0;
+    position:relative;z-index:2;width:100%;aspect-ratio:21/9;
+    overflow:hidden;display:block;margin:0 auto;
   }
   .hero .figure-bg{
-    position:absolute;inset:-8%;
+    position:absolute;inset:0;
     background:
-      radial-gradient(45% 70% at 70% 50%, rgba(122,32,48,.55) 0%, rgba(122,32,48,.18) 60%, transparent 100%),
-      radial-gradient(50% 50% at 15% 30%, rgba(255,200,140,.18) 0%, transparent 70%);
-    filter:blur(36px);z-index:0;
+      radial-gradient(40% 80% at 75% 50%, rgba(122,32,48,.55) 0%, rgba(122,32,48,.18) 60%, transparent 100%),
+      radial-gradient(45% 60% at 15% 35%, rgba(255,200,140,.22) 0%, transparent 70%);
+    filter:blur(40px);z-index:0;
   }
   .hero .figure img{
     position:relative;z-index:1;
@@ -112,17 +113,12 @@
   }
   .hero .figure::after{
     content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
-    background:linear-gradient(90deg, rgba(13,13,13,.80) 0%, rgba(13,13,13,.10) 50%, rgba(13,13,13,0) 100%);
+    background:linear-gradient(90deg, rgba(13,13,13,.78) 0%, rgba(13,13,13,.10) 45%, rgba(13,13,13,0) 80%, rgba(13,13,13,.6) 100%);
   }
-  .hero .torn-top, .hero .torn-bottom{
-    position:absolute;left:0;right:0;width:100%;height:34px;z-index:3;display:block;
-  }
-  .hero .torn-top{top:-1px}
-  .hero .torn-bottom{bottom:-1px;transform:scaleY(-1)}
   .hero .hero-script{
-    position:absolute;left:5%;top:42%;transform:rotate(-4deg);
-    font-family:'Caveat',cursive;font-weight:700;font-size:64px;color:#fff;
-    text-shadow:0 6px 30px rgba(0,0,0,.85), 0 0 60px rgba(122,32,48,.5);
+    position:absolute;left:8%;top:48%;transform:rotate(-4deg);
+    font-family:'Caveat',cursive;font-weight:700;font-size:96px;color:#fff;
+    text-shadow:0 6px 30px rgba(0,0,0,.85), 0 0 70px rgba(122,32,48,.6);
     letter-spacing:.005em;z-index:4;line-height:1;
     pointer-events:none;white-space:nowrap;
   }
@@ -279,11 +275,11 @@
 
   /* ===================== MOBILE TUNING ===================== */
   @media (max-width:880px){
-    .hero{padding:90px 18px 0}
-    .hero-inner{gap:20px;padding-bottom:22px}
-    .hero .figure{max-width:100%;aspect-ratio:16/10}
+    .hero{padding:80px 0 0}
+    .hero-inner{gap:20px;padding:0 18px 22px}
+    .hero .figure{aspect-ratio:16/10}
     .hero .figure img{object-position:center top}
-    .hero .hero-script{font-size:42px;left:5%;top:42%}
+    .hero .hero-script{font-size:46px;left:6%;top:46%}
     .hero h1{display:none}                  /* Hide PORTFOLIO headline on phone */
     .hero .yr{top:64px;right:18px;font-size:16px}
     .hero .kicker{font-size:11px;letter-spacing:.22em}
@@ -393,14 +389,12 @@
 <header class="hero">
   <div class="grid-bg"></div>
   <div class="yr">2026</div>
+  <div class="figure reveal">
+    <div class="figure-bg"></div>
+    <img src="aryan-formal1.jpeg" alt="Aryan Kapta"/>
+    <span class="hero-script">Aryan&nbsp;Kapta</span>
+  </div>
   <div class="hero-inner">
-    <div class="figure reveal">
-      <svg class="torn-top" viewBox="0 0 1200 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,38 L40,18 L100,28 L160,8 L220,24 L280,12 L340,28 L400,10 L460,26 L520,12 L580,28 L640,14 L700,26 L760,10 L820,28 L880,16 L940,28 L1000,12 L1060,26 L1120,14 L1180,28 L1200,16 L1200,0 L0,0 Z" fill="#0d0d0d"/></svg>
-      <div class="figure-bg"></div>
-      <img src="aryan-formal1.jpeg" alt="Aryan Kapta"/>
-      <span class="hero-script">Aryan&nbsp;Kapta</span>
-      <svg class="torn-bottom" viewBox="0 0 1200 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,2 L40,22 L100,12 L160,32 L220,16 L280,28 L340,12 L400,30 L460,14 L520,28 L580,12 L640,26 L700,14 L760,30 L820,12 L880,24 L940,12 L1000,28 L1060,14 L1120,26 L1180,12 L1200,24 L1200,40 L0,40 Z" fill="#0d0d0d"/></svg>
-    </div>
     <div class="copy-wrap reveal">
       <div class="kicker">★ <span class="red">PROFESSIONAL</span> BARTENDER · MIXOLOGIST</div>
       <p class="sub">Five years behind premium bars, from a Greek tavern at Goa sunset to a 5-star palace in Srinagar, and now serving the floors of Dubai. Craft cocktails, flair, and unforgettable guests.</p>
