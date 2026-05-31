@@ -99,12 +99,11 @@
   .btn.dark{background:var(--black);color:#fff;border-color:var(--black)}
   .btn.dark:hover{background:transparent;color:var(--black)}
 
-  /* Hero figure — contained editorial banner with torn paper edges (image 3 reference) */
+  /* Hero figure — full viewport edge-to-edge, full head/body visible (no top crop) */
   .hero .figure{
-    position:relative;z-index:2;width:100%;max-width:1100px;margin:0 auto;
-    aspect-ratio:16/9;
+    position:relative;z-index:2;width:100%;margin:0 auto;
+    aspect-ratio:21/9;
     overflow:hidden;display:block;
-    box-shadow:0 30px 80px rgba(0,0,0,.55), 0 0 0 1px rgba(255,255,255,.04);
   }
   .hero .figure-bg{
     position:absolute;inset:0;
@@ -115,11 +114,11 @@
   }
   .hero .figure img{
     position:relative;z-index:1;
-    width:100%;height:100%;display:block;object-fit:cover;object-position:65% 18%;
+    width:100%;height:100%;display:block;object-fit:cover;object-position:center 0%;
   }
   .hero .figure::after{
     content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
-    background:linear-gradient(90deg, rgba(13,13,13,.85) 0%, rgba(13,13,13,.20) 40%, rgba(13,13,13,0) 70%);
+    background:linear-gradient(90deg, rgba(13,13,13,.80) 0%, rgba(13,13,13,.15) 38%, rgba(13,13,13,0) 70%);
   }
   .hero .hero-script{
     position:absolute;left:6%;top:50%;transform:translateY(-50%) rotate(-3deg);
@@ -412,12 +411,12 @@
 <!-- HERO -->
 <header class="hero">
   <div class="grid-bg"></div>
+  <div class="figure reveal">
+    <div class="figure-bg"></div>
+    <img src="aryan-formal1.jpeg" alt="Aryan Kapta"/>
+    <span class="hero-script">Aryan&nbsp;Kapta</span>
+  </div>
   <div class="hero-inner">
-    <div class="figure reveal">
-      <div class="figure-bg"></div>
-      <img src="aryan-formal1.jpeg" alt="Aryan Kapta"/>
-      <span class="hero-script">Aryan&nbsp;Kapta</span>
-    </div>
     <div class="copy-wrap reveal">
       <div class="kicker">★ <span class="red">PROFESSIONAL</span> BARTENDER · MIXOLOGIST</div>
       <p class="sub">Five years behind premium bars, from a Greek tavern at Goa sunset to a 5-star palace in Srinagar, and now serving the floors of Dubai. Craft cocktails, flair, and unforgettable guests.</p>
