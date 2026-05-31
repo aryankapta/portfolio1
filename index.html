@@ -6,7 +6,7 @@
 <title>Aryan Kapta · Bartender Portfolio 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Inter:wght@300;400;500;600;700;800&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Inter:wght@300;400;500;600;700;800&family=Caveat+Brush&family=Kaushan+Script&display=swap" rel="stylesheet">
 <style>
   :root{
     --red:#ed2929;
@@ -55,7 +55,7 @@
     background-size:40px 40px;opacity:.7;
     mask-image:radial-gradient(ellipse at center, #000 30%, transparent 75%);
   }
-  .hero-inner{position:relative;z-index:2;max-width:1080px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:36px;padding-bottom:30px;text-align:center}
+  .hero-inner{position:relative;z-index:2;max-width:1180px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:64px;padding-bottom:40px;text-align:center}
   .hero .copy-wrap{max-width:780px}
   .hero .yr{
     position:absolute;top:96px;right:40px;font-family:'Anton',sans-serif;font-size:28px;letter-spacing:.18em;color:#fff;z-index:3
@@ -79,10 +79,14 @@
   .roles-loop{justify-content:center}
 
   /* Roles loop under CTAs */
-  .roles-loop{margin-top:30px;font-family:'Anton',sans-serif;font-size:34px;line-height:1.2;text-transform:uppercase;letter-spacing:.02em;color:#fff;display:flex;flex-wrap:wrap;gap:8px 18px;min-height:1.4em}
-  .role-item{opacity:0;transform:translateY(12px);transition:opacity .55s ease, transform .55s ease;color:#fff}
-  .role-item .hl{display:inline-block;padding:0 .14em;color:#fff;background:var(--red);box-decoration-break:clone;-webkit-box-decoration-break:clone}
-  .role-item.show{opacity:1;transform:translateY(0)}
+  .roles-loop{margin-top:32px;font-family:'Anton',sans-serif;font-size:48px;line-height:1.1;text-transform:uppercase;letter-spacing:.02em;color:#fff;display:flex;justify-content:center;align-items:center;min-height:1.4em;position:relative}
+  #roleSingle{
+    display:inline-block;color:#fff;background:var(--red);padding:6px 22px;
+    opacity:0;transform:translateY(12px);
+    transition:opacity .5s ease, transform .5s ease;
+    box-decoration-break:clone;-webkit-box-decoration-break:clone;
+  }
+  #roleSingle.show{opacity:1;transform:translateY(0)}
 
   .btn{
     display:inline-flex;align-items:center;gap:10px;padding:14px 22px;border:2px solid var(--red);
@@ -123,8 +127,8 @@
   .hero .torn-top{top:-1px}
   .hero .torn-bottom{bottom:-1px;transform:scaleY(-1)}
   .hero .hero-script{
-    position:absolute;left:6%;top:50%;transform:translateY(-50%) rotate(-4deg);
-    font-family:'Caveat',cursive;font-weight:700;font-size:86px;color:#fff;
+    position:absolute;left:6%;top:50%;transform:translateY(-50%) rotate(-3deg);
+    font-family:'Caveat Brush', 'Kaushan Script', cursive;font-weight:400;font-size:104px;color:#fff;
     text-shadow:0 6px 30px rgba(0,0,0,.85), 0 0 70px rgba(122,32,48,.6);
     letter-spacing:.005em;z-index:4;line-height:1;
     pointer-events:none;white-space:nowrap;
@@ -410,7 +414,6 @@
 <!-- HERO -->
 <header class="hero">
   <div class="grid-bg"></div>
-  <div class="yr">2026</div>
   <div class="hero-inner">
     <div class="figure reveal">
       <svg class="torn-top" viewBox="0 0 1200 28" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,26 L50,8 L120,18 L180,4 L240,16 L300,6 L360,18 L420,4 L480,18 L540,6 L600,20 L660,4 L720,18 L780,6 L840,20 L900,8 L960,20 L1020,6 L1080,18 L1140,4 L1200,18 L1200,0 L0,0 Z" fill="#0d0d0d"/></svg>
@@ -426,7 +429,7 @@
         <a class="btn" href="#experience">VIEW EXPERIENCE</a>
         <a class="btn ghost" href="#contact">GET IN TOUCH</a>
       </div>
-      <div class="roles-loop" id="rolesLoop"></div>
+      <div class="roles-loop"><span id="roleSingle"></span></div>
     </div>
   </div>
   <div class="marquee">
@@ -665,31 +668,26 @@
   },{threshold:0, rootMargin:'-35% 0px -35% 0px'});
   document.querySelectorAll('.cock').forEach(el=>ioCock.observe(el));
 
-  // Roles loop, accumulate one by one then reset
+  // Roles loop — one at a time, centered, infinite cycle
   (function(){
     const roles = ['BARTENDER.', 'MIXOLOGIST.', 'CONTENT CREATOR.', 'YOUTUBER.'];
-    const wrap = document.getElementById('rolesLoop');
-    if(!wrap) return;
-    function build(){
-      wrap.innerHTML = '';
-      roles.forEach(r=>{
-        const item = document.createElement('span');
-        item.className = 'role-item';
-        item.innerHTML = '<span class="hl">'+r+'</span>';
-        wrap.appendChild(item);
-      });
+    const el = document.getElementById('roleSingle');
+    if(!el) return;
+    let i = 0;
+    function cycle(){
+      el.textContent = roles[i];
+      // fade in
+      requestAnimationFrame(()=>requestAnimationFrame(()=>el.classList.add('show')));
+      setTimeout(()=>{
+        // fade out
+        el.classList.remove('show');
+        setTimeout(()=>{
+          i = (i + 1) % roles.length;
+          cycle();
+        }, 500);
+      }, 2000);
     }
-    function reveal(){
-      wrap.querySelectorAll('.role-item').forEach((it,i)=>{
-        setTimeout(()=>it.classList.add('show'), i*850);
-      });
-    }
-    function loop(){
-      build();
-      requestAnimationFrame(()=>requestAnimationFrame(reveal));
-      setTimeout(loop, roles.length*850 + 4500);
-    }
-    loop();
+    cycle();
   })();
 
 </script>
