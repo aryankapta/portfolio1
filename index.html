@@ -121,11 +121,6 @@
     content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
     background:linear-gradient(90deg, rgba(13,13,13,.85) 0%, rgba(13,13,13,.20) 40%, rgba(13,13,13,0) 70%);
   }
-  .hero .torn-top, .hero .torn-bottom{
-    position:absolute;left:0;right:0;width:100%;height:28px;z-index:5;display:block;
-  }
-  .hero .torn-top{top:-1px}
-  .hero .torn-bottom{bottom:-1px;transform:scaleY(-1)}
   .hero .hero-script{
     position:absolute;left:6%;top:50%;transform:translateY(-50%) rotate(-3deg);
     font-family:'Caveat Brush', 'Kaushan Script', cursive;font-weight:400;font-size:104px;color:#fff;
@@ -250,16 +245,18 @@
   /* COCKTAILS — vertical stack, each card reveals on scroll */
   .cocktails{background:var(--paper)}
   .cock-scroll{
-    display:flex;flex-direction:column;align-items:center;gap:30vh;
-    max-width:460px;margin:0 auto;padding:20vh 0;
+    display:grid;grid-template-columns:repeat(2, 1fr);gap:28px;
+    max-width:900px;margin:0 auto;
   }
   .cock-scroll .cock{
     width:100%;position:relative;aspect-ratio:4/5;overflow:hidden;
     border:4px solid var(--black);background:var(--red);
-    opacity:0;transform:translateY(80px) scale(.92);
-    transition:transform 1s cubic-bezier(.2,.7,.2,1), opacity .9s ease, box-shadow .3s, border-color .3s;
+    opacity:0;transform:translateY(40px);
+    transition:transform .8s cubic-bezier(.2,.7,.2,1), opacity .8s ease, box-shadow .3s, border-color .3s;
   }
-  .cock.in{opacity:1;transform:translateY(0) scale(1)}
+  .cock.in{opacity:1;transform:translateY(0)}
+  /* Last card alone in a row: centre it */
+  .cock-scroll .cock:nth-child(5){grid-column:1 / -1;justify-self:center;max-width:calc(50% - 14px)}
   .cock:hover{box-shadow:10px 10px 0 var(--red);border-color:var(--red)}
   .cock img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
   .cock:hover img{transform:scale(1.04)}
@@ -372,9 +369,10 @@
     .skill h4{font-size:17px;color:#fff}
     .skill p{font-size:13px;color:rgba(255,255,255,.85)}
 
-    /* COCKTAILS — vertical reveal one at a time */
-    .cock-scroll{gap:28px;max-width:380px}
-    .cock-scroll .cock{border-width:3px}
+    /* COCKTAILS — single column, scroll-revealed one at a time */
+    .cock-scroll{grid-template-columns:1fr;gap:24vh;max-width:380px;padding:8vh 0}
+    .cock-scroll .cock{border-width:3px;aspect-ratio:4/5}
+    .cock-scroll .cock:nth-child(5){grid-column:auto;max-width:none}
     .cock .label{padding:18px}
     .cock .label small{font-size:11px;letter-spacing:.22em}
     .cock .label b{font-size:22px}
@@ -416,11 +414,9 @@
   <div class="grid-bg"></div>
   <div class="hero-inner">
     <div class="figure reveal">
-      <svg class="torn-top" viewBox="0 0 1200 28" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,26 L50,8 L120,18 L180,4 L240,16 L300,6 L360,18 L420,4 L480,18 L540,6 L600,20 L660,4 L720,18 L780,6 L840,20 L900,8 L960,20 L1020,6 L1080,18 L1140,4 L1200,18 L1200,0 L0,0 Z" fill="#0d0d0d"/></svg>
       <div class="figure-bg"></div>
       <img src="aryan-formal1.jpeg" alt="Aryan Kapta"/>
       <span class="hero-script">Aryan&nbsp;Kapta</span>
-      <svg class="torn-bottom" viewBox="0 0 1200 28" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,2 L50,20 L120,10 L180,24 L240,12 L300,22 L360,10 L420,24 L480,10 L540,22 L600,8 L660,24 L720,10 L780,22 L840,8 L900,20 L960,8 L1020,22 L1080,10 L1140,24 L1200,10 L1200,28 L0,28 Z" fill="#0d0d0d"/></svg>
     </div>
     <div class="copy-wrap reveal">
       <div class="kicker">★ <span class="red">PROFESSIONAL</span> BARTENDER · MIXOLOGIST</div>
@@ -659,13 +655,12 @@
   },{threshold:.12});
   document.querySelectorAll('.reveal').forEach(el=>ioReveal.observe(el));
 
-  // Cocktail cards — reveal only when card center hits viewport center
+  // Cocktail cards — scroll-reveal one-shot
   const ioCock = new IntersectionObserver((entries)=>{
     entries.forEach(e=>{
-      if(e.isIntersecting){ e.target.classList.add('in'); }
-      else { e.target.classList.remove('in'); }
+      if(e.isIntersecting){ e.target.classList.add('in'); ioCock.unobserve(e.target); }
     });
-  },{threshold:0, rootMargin:'-35% 0px -35% 0px'});
+  },{threshold:.2});
   document.querySelectorAll('.cock').forEach(el=>ioCock.observe(el));
 
   // Roles loop — one at a time, centered, infinite cycle
