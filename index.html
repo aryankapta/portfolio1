@@ -107,6 +107,33 @@
     position:relative;z-index:2;width:100%;margin:0 auto;
     aspect-ratio:21/9;
     overflow:hidden;display:block;
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);
+  }
+  /* Quick action icons (phone + email) top-right of hero photo */
+  .quick-actions{
+    position:absolute;top:18px;right:22px;z-index:6;
+    display:flex;gap:12px;align-items:center;
+  }
+  .quick-actions a{
+    width:44px;height:44px;border-radius:50%;
+    display:inline-flex;align-items:center;justify-content:center;
+    color:#fff;background:rgba(13,8,10,.45);
+    border:1.5px solid rgba(255,255,255,.55);
+    backdrop-filter:blur(10px) saturate(1.2);
+    -webkit-backdrop-filter:blur(10px) saturate(1.2);
+    transition:all .25s;
+    box-shadow:0 4px 14px rgba(0,0,0,.4);
+  }
+  .quick-actions a:hover{
+    background:var(--red);border-color:var(--red);
+    transform:translateY(-2px);
+    box-shadow:0 6px 18px rgba(220,38,38,.5);
+  }
+  .quick-actions a svg{width:18px;height:18px}
+  @media (max-width:780px){
+    .quick-actions{top:12px;right:14px;gap:10px}
+    .quick-actions a{width:38px;height:38px}
+    .quick-actions a svg{width:16px;height:16px}
   }
   .hero .figure-bg{
     position:absolute;inset:0;
@@ -436,6 +463,14 @@
     <div class="figure-bg"></div>
     <img src="aryan-formal1.jpeg" alt="Aryan Kapta"/>
     <span class="hero-script">Aryan&nbsp;Kapta</span>
+    <div class="quick-actions" aria-label="Quick contact">
+      <a href="tel:+918894138882" title="Call Aryan" aria-label="Call">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.62 10.79a15.46 15.46 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.24 1.02z"/></svg>
+      </a>
+      <a href="mailto:aryankapta33@gmail.com" title="Email Aryan" aria-label="Email">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5z"/></svg>
+      </a>
+    </div>
   </div>
   <div class="hero-inner">
     <div class="copy-wrap reveal">
