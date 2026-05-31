@@ -94,19 +94,24 @@
   .btn.dark{background:var(--black);color:#fff;border-color:var(--black)}
   .btn.dark:hover{background:transparent;color:var(--black)}
 
-  /* Hero figure — full image with cursive overlay */
+  /* Hero figure — cropped portrait (head + shoulders) with cursive overlay like the reference template */
   .hero .figure{
-    position:relative;width:100%;max-width:520px;
-    display:flex;align-items:flex-end;justify-content:center;
+    position:relative;width:100%;max-width:780px;aspect-ratio:16/10;
+    overflow:hidden;display:block;
   }
   .hero .figure img{
-    width:100%;height:auto;max-height:560px;display:block;object-fit:contain;
+    width:100%;height:100%;display:block;object-fit:cover;object-position:center 15%;
+  }
+  .hero .figure::before{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(90deg, rgba(13,13,13,.75) 0%, rgba(13,13,13,.1) 45%, rgba(13,13,13,0) 100%);
+    z-index:1;pointer-events:none;
   }
   .hero .hero-script{
-    position:absolute;left:-40px;top:30%;transform:rotate(-6deg);
-    font-family:'Caveat',cursive;font-weight:700;font-size:64px;color:#fff;
-    text-shadow:0 4px 18px rgba(0,0,0,.55);letter-spacing:.01em;z-index:2;line-height:1;
-    pointer-events:none;
+    position:absolute;left:6%;top:38%;transform:rotate(-4deg);
+    font-family:'Caveat',cursive;font-weight:700;font-size:84px;color:#fff;
+    text-shadow:0 6px 24px rgba(0,0,0,.7);letter-spacing:.005em;z-index:2;line-height:1;
+    pointer-events:none;white-space:nowrap;
   }
   .hero .marquee{
     position:relative;z-index:2;margin-top:30px;background:var(--red);color:#fff;
@@ -207,35 +212,27 @@
   .skill h4{font-family:'Archivo Black',sans-serif;font-size:18px;margin:0 0 8px;text-transform:uppercase;line-height:1.15;color:#fff}
   .skill p{margin:0;font-size:13.5px;line-height:1.6;color:rgba(255,255,255,.85)}
 
-  /* COCKTAILS — one-at-a-time horizontal scroll snap */
+  /* COCKTAILS — vertical stack, each card reveals on scroll */
   .cocktails{background:var(--paper)}
   .cock-scroll{
-    display:flex;gap:24px;
-    overflow-x:auto;overflow-y:hidden;
-    scroll-snap-type:x mandatory;
-    scroll-behavior:smooth;
-    padding:8px 0 24px;
-    -webkit-overflow-scrolling:touch;
-    scrollbar-width:thin;scrollbar-color:var(--red) transparent;
+    display:flex;flex-direction:column;align-items:center;gap:36px;
+    max-width:640px;margin:0 auto;
   }
-  .cock-scroll::-webkit-scrollbar{height:6px}
-  .cock-scroll::-webkit-scrollbar-thumb{background:var(--red)}
-  .cock-scroll::-webkit-scrollbar-track{background:rgba(0,0,0,.06)}
   .cock-scroll .cock{
-    flex:0 0 calc(min(640px, 80vw));
-    scroll-snap-align:center;
-    position:relative;aspect-ratio:3/4;overflow:hidden;
+    width:100%;position:relative;aspect-ratio:3/4;overflow:hidden;
     border:4px solid var(--black);background:var(--red);
-    transition:transform .3s, box-shadow .3s, border-color .3s;
+    opacity:0;transform:translateY(40px);
+    transition:transform .7s ease, opacity .7s ease, box-shadow .3s, border-color .3s;
   }
-  .cock:hover{transform:translateY(-6px);box-shadow:8px 8px 0 var(--red);border-color:var(--red)}
+  .cock.in{opacity:1;transform:translateY(0)}
+  .cock:hover{box-shadow:10px 10px 0 var(--red);border-color:var(--red)}
   .cock img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
   .cock:hover img{transform:scale(1.04)}
   .cock .label{position:absolute;left:0;right:0;bottom:0;padding:22px 24px;background:linear-gradient(180deg,transparent,rgba(0,0,0,.94))}
   .cock .label small{display:inline-block;background:var(--red);color:#fff;font-family:'Anton',sans-serif;font-size:12px;letter-spacing:.24em;padding:3px 10px;margin-bottom:8px;text-transform:uppercase}
-  .cock .label b{display:block;font-family:'Archivo Black',sans-serif;font-size:24px;color:#fff;text-transform:uppercase;line-height:1.1}
-  .cock-hint{display:block;text-align:center;color:var(--muted);font-family:'Anton',sans-serif;letter-spacing:.32em;font-size:12px;margin-top:12px;text-transform:uppercase}
-  .cock-hint::before{content:"← "}.cock-hint::after{content:" →"}
+  .cock .label b{display:block;font-family:'Archivo Black',sans-serif;font-size:26px;color:#fff;text-transform:uppercase;line-height:1.1}
+  .cock-hint{display:block;text-align:center;color:var(--muted);font-family:'Anton',sans-serif;letter-spacing:.32em;font-size:12px;margin-top:16px;text-transform:uppercase}
+  .cock-hint::before{content:"↓ "}.cock-hint::after{content:" ↓"}
 
   /* CONTACT — black */
   .contact{background:var(--black);color:#fff;text-align:center}
@@ -271,9 +268,8 @@
   @media (max-width:880px){
     .hero{padding:90px 18px 0}
     .hero-inner{gap:20px;padding-bottom:22px}
-    .hero .figure{max-width:320px;width:100%}
-    .hero .figure img{max-height:440px}
-    .hero .hero-script{font-size:42px;left:-10px;top:14%}
+    .hero .figure{max-width:100%;aspect-ratio:4/3}
+    .hero .hero-script{font-size:52px;left:6%;top:38%}
     .hero h1{display:none}                  /* Hide PORTFOLIO headline on phone */
     .hero .yr{top:64px;right:18px;font-size:16px}
     .hero .kicker{font-size:11px;letter-spacing:.22em}
@@ -340,12 +336,12 @@
     .skill h4{font-size:17px;color:#fff}
     .skill p{font-size:13px;color:rgba(255,255,255,.85)}
 
-    /* COCKTAILS — one card per viewport, swipe to next */
-    .cock-scroll{gap:16px;padding:8px 16px 18px;scroll-padding:0 16px}
-    .cock-scroll .cock{flex:0 0 86vw;border-width:3px}
-    .cock .label{padding:18px 18px}
+    /* COCKTAILS — vertical reveal one at a time */
+    .cock-scroll{gap:28px;max-width:380px}
+    .cock-scroll .cock{border-width:3px}
+    .cock .label{padding:18px}
     .cock .label small{font-size:11px;letter-spacing:.22em}
-    .cock .label b{font-size:20px}
+    .cock .label b{font-size:22px}
 
     /* CONTACT */
     .contact h2{font-size:44px}
@@ -623,7 +619,7 @@
   const io = new IntersectionObserver((entries)=>{
     entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
   },{threshold:.12});
-  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  document.querySelectorAll('.reveal, .cock').forEach(el=>io.observe(el));
 
   // Roles loop, accumulate one by one then reset
   (function(){
