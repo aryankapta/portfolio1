@@ -263,9 +263,9 @@
     position:absolute;inset:0;z-index:0;
     background-image:url('Sada-1.jpg');
     background-size:cover;background-position:center center;
-    opacity:.32;
-    filter:saturate(.95) contrast(1.05);
-    mix-blend-mode:overlay;
+    opacity:.55;
+    filter:saturate(1) contrast(1.1);
+    mix-blend-mode:soft-light;
   }
   .skills::before{
     content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
@@ -413,6 +413,11 @@
     .job .pill{justify-self:start;margin-top:4px}
 
     /* SKILLS — glass cards */
+    .skills .bg-photo{
+      background-image:url('martini-1594301605.avif');
+      background-position:center center;
+      opacity:.55;mix-blend-mode:soft-light;
+    }
     .skills-grid{grid-template-columns:1fr;gap:12px;background:transparent;border:none}
     .skill{
       padding:20px 18px;
