@@ -254,23 +254,34 @@
   }
   .job .pill.gray{background:transparent;color:#888;border:1px solid #333}
 
-  /* SKILLS — red with ambient variation so glass blur is visible */
+  /* SKILLS — red with faded photo backdrop + ambient gradients (glass cards visible blur) */
   .skills{
-    background:
-      radial-gradient(45% 50% at 80% 15%, rgba(255,255,255,.18) 0%, transparent 70%),
-      radial-gradient(40% 55% at 15% 85%, rgba(0,0,0,.30) 0%, transparent 70%),
-      radial-gradient(35% 35% at 50% 50%, rgba(255,255,255,.10) 0%, transparent 75%),
-      var(--red);
-    color:#fff;position:relative;
+    background:var(--red);
+    color:#fff;position:relative;overflow:hidden;
+  }
+  .skills .bg-photo{
+    position:absolute;inset:0;z-index:0;
+    background-image:url('aryan.jpeg');
+    background-size:cover;background-position:center 30%;
+    opacity:.28;
+    filter:saturate(.9) contrast(1.05);
+    mix-blend-mode:overlay;
   }
   .skills::before{
-    content:"";position:absolute;inset:0;pointer-events:none;opacity:.18;
+    content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+    background:
+      radial-gradient(45% 50% at 80% 15%, rgba(255,255,255,.16) 0%, transparent 70%),
+      radial-gradient(40% 55% at 15% 85%, rgba(0,0,0,.30) 0%, transparent 70%),
+      linear-gradient(180deg, rgba(220,38,38,.25) 0%, rgba(160,27,27,.45) 100%);
+  }
+  .skills::after{
+    content:"";position:absolute;inset:0;z-index:2;pointer-events:none;opacity:.16;
     background-image:
       linear-gradient(rgba(255,255,255,.4) 1px, transparent 1px),
       linear-gradient(90deg, rgba(255,255,255,.4) 1px, transparent 1px);
     background-size:56px 56px;
   }
-  .skills > *{position:relative;z-index:1}
+  .skills > *{position:relative;z-index:3}
   .skills .section-tag{background:var(--black)}
   .skills .h-mega{color:#fff}
   .skills .h-mega .hl{background:var(--black);color:#fff}
@@ -616,6 +627,7 @@
 
 <!-- SKILLS -->
 <section id="skills" class="skills">
+  <div class="bg-photo"></div>
   <div class="wrap">
     <div class="reveal">
       <div class="section-tag black">Craft</div>
