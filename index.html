@@ -54,7 +54,8 @@
     background-size:40px 40px;opacity:.7;
     mask-image:radial-gradient(ellipse at center, #000 30%, transparent 75%);
   }
-  .hero-inner{position:relative;z-index:2;max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1.2fr .9fr;align-items:center;gap:40px;padding-bottom:30px}
+  .hero-inner{position:relative;z-index:2;max-width:1080px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:36px;padding-bottom:30px;text-align:center}
+  .hero .copy-wrap{max-width:780px}
   .hero .yr{
     position:absolute;top:96px;right:40px;font-family:'Anton',sans-serif;font-size:28px;letter-spacing:.18em;color:#fff;z-index:3
   }
@@ -71,7 +72,10 @@
   }
   .hero h1 .scribble{font-family:'Caveat',cursive;font-weight:700;color:var(--red);font-size:.4em;display:inline-block;transform:translateY(-.6em) rotate(-6deg);margin-left:.1em}
   .hero .sub{font-family:'Inter';font-weight:300;color:#cfcfcf;max-width:560px;font-size:16px;line-height:1.65;margin-top:18px}
-  .hero .ctas{margin-top:24px;display:flex;gap:12px;flex-wrap:wrap}
+  .hero .ctas{margin-top:24px;display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+  .hero .kicker{text-align:center}
+  .hero .sub{margin-left:auto;margin-right:auto}
+  .roles-loop{justify-content:center}
 
   /* Roles loop under CTAs */
   .roles-loop{margin-top:30px;font-family:'Anton',sans-serif;font-size:34px;line-height:1.2;text-transform:uppercase;letter-spacing:.02em;color:#fff;display:flex;flex-wrap:wrap;gap:8px 18px;min-height:1.4em}
@@ -90,20 +94,19 @@
   .btn.dark{background:var(--black);color:#fff;border-color:var(--black)}
   .btn.dark:hover{background:transparent;color:var(--black)}
 
-  /* Hero figure — full image, no crop, no box */
+  /* Hero figure — full image with cursive overlay */
   .hero .figure{
-    position:relative;justify-self:end;width:100%;max-width:480px;
+    position:relative;width:100%;max-width:520px;
     display:flex;align-items:flex-end;justify-content:center;
   }
   .hero .figure img{
-    width:100%;height:auto;max-height:640px;display:block;object-fit:contain;
+    width:100%;height:auto;max-height:560px;display:block;object-fit:contain;
   }
-  .hero .figure .tape{display:none}
-  .hero .stamp{
-    position:absolute;bottom:8px;left:-8px;width:108px;height:108px;border-radius:50%;
-    background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;text-align:center;
-    font-family:'Anton',sans-serif;text-transform:uppercase;font-size:13px;line-height:1.05;letter-spacing:.1em;
-    border:3px solid #fff;transform:rotate(-12deg);box-shadow:0 6px 0 rgba(0,0,0,.35);padding:10px;z-index:2;
+  .hero .hero-script{
+    position:absolute;left:-40px;top:30%;transform:rotate(-6deg);
+    font-family:'Caveat',cursive;font-weight:700;font-size:64px;color:#fff;
+    text-shadow:0 4px 18px rgba(0,0,0,.55);letter-spacing:.01em;z-index:2;line-height:1;
+    pointer-events:none;
   }
   .hero .marquee{
     position:relative;z-index:2;margin-top:30px;background:var(--red);color:#fff;
@@ -149,7 +152,13 @@
     padding:10px 16px;letter-spacing:.18em;font-size:14px;transform:rotate(6deg);border:3px solid #fff;box-shadow:0 4px 0 rgba(0,0,0,.3)
   }
   .about .side .meta{margin-top:24px;display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
-  .about .side .meta div{padding:14px;background:var(--black);color:#fff}
+  .about .side .meta div{
+    padding:14px;color:#fff;
+    background:rgba(13,13,13,.7);
+    backdrop-filter:blur(18px) saturate(1.2);
+    -webkit-backdrop-filter:blur(18px) saturate(1.2);
+    border:1px solid rgba(255,255,255,.08);
+  }
   .about .side .meta b{display:block;font-family:'Anton',sans-serif;letter-spacing:.18em;font-size:13px;color:var(--red);margin-bottom:4px;text-transform:uppercase}
   .about .side .meta span{font-size:14px;color:#fff}
 
@@ -159,10 +168,14 @@
   .jobs{display:grid;grid-template-columns:1fr;gap:0}
   .job{
     display:grid;grid-template-columns:170px 1fr auto;gap:30px;align-items:start;
-    padding:28px 0;border-top:2px solid rgba(255,255,255,.12);
-    transition:padding-left .25s, background .25s;
+    padding:24px 22px;margin-bottom:14px;
+    background:rgba(255,255,255,.04);
+    backdrop-filter:blur(14px) saturate(1.1);
+    -webkit-backdrop-filter:blur(14px) saturate(1.1);
+    border:1px solid rgba(255,255,255,.08);
+    transition:padding-left .25s, background .25s, border-color .25s;
   }
-  .job:hover{padding-left:14px;background:linear-gradient(90deg, rgba(237,41,41,.08), transparent)}
+  .job:hover{padding-left:30px;background:rgba(237,41,41,.10);border-color:rgba(237,41,41,.5)}
   .job .when{font-family:'Anton',sans-serif;letter-spacing:.12em;color:var(--red);font-size:18px;text-transform:uppercase}
   .job .when small{display:block;color:#9a9a9a;font-size:12px;letter-spacing:.18em;margin-top:4px}
   .job h3{font-family:'Anton',sans-serif;font-size:32px;margin:0 0 4px;text-transform:uppercase;letter-spacing:.01em;line-height:1.05}
@@ -181,22 +194,48 @@
   .skills .h-mega{color:#fff}
   .skills .h-mega .hl{background:var(--black);color:#fff}
   .skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-  .skill{background:var(--paper);color:var(--black);padding:24px 22px;border:3px solid var(--black);position:relative;transition:transform .2s, box-shadow .2s}
-  .skill:hover{transform:translate(-3px,-3px);box-shadow:6px 6px 0 var(--black)}
-  .skill .num{display:inline-block;background:var(--black);color:#fff;font-family:'Anton',sans-serif;padding:3px 8px;letter-spacing:.14em;font-size:12px;margin-bottom:12px}
-  .skill h4{font-family:'Archivo Black',sans-serif;font-size:18px;margin:0 0 8px;text-transform:uppercase;line-height:1.15}
-  .skill p{margin:0;font-size:13.5px;line-height:1.6;color:#333}
+  .skill{
+    color:#fff;padding:24px 22px;position:relative;
+    background:rgba(255,255,255,.10);
+    backdrop-filter:blur(18px) saturate(1.2);
+    -webkit-backdrop-filter:blur(18px) saturate(1.2);
+    border:1px solid rgba(255,255,255,.18);
+    transition:transform .2s, background .2s, border-color .2s;
+  }
+  .skill:hover{transform:translateY(-4px);background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.32)}
+  .skill .num{display:inline-block;background:rgba(0,0,0,.5);color:#fff;font-family:'Anton',sans-serif;padding:3px 8px;letter-spacing:.14em;font-size:12px;margin-bottom:12px}
+  .skill h4{font-family:'Archivo Black',sans-serif;font-size:18px;margin:0 0 8px;text-transform:uppercase;line-height:1.15;color:#fff}
+  .skill p{margin:0;font-size:13.5px;line-height:1.6;color:rgba(255,255,255,.85)}
 
-  /* COCKTAILS */
+  /* COCKTAILS — one-at-a-time horizontal scroll snap */
   .cocktails{background:var(--paper)}
-  .cock-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
-  .cock{position:relative;aspect-ratio:3/4;overflow:hidden;border:4px solid var(--black);background:var(--red);transition:transform .2s, box-shadow .2s}
-  .cock:hover{transform:translate(-3px,-3px);box-shadow:6px 6px 0 var(--red)}
+  .cock-scroll{
+    display:flex;gap:24px;
+    overflow-x:auto;overflow-y:hidden;
+    scroll-snap-type:x mandatory;
+    scroll-behavior:smooth;
+    padding:8px 0 24px;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:thin;scrollbar-color:var(--red) transparent;
+  }
+  .cock-scroll::-webkit-scrollbar{height:6px}
+  .cock-scroll::-webkit-scrollbar-thumb{background:var(--red)}
+  .cock-scroll::-webkit-scrollbar-track{background:rgba(0,0,0,.06)}
+  .cock-scroll .cock{
+    flex:0 0 calc(min(640px, 80vw));
+    scroll-snap-align:center;
+    position:relative;aspect-ratio:3/4;overflow:hidden;
+    border:4px solid var(--black);background:var(--red);
+    transition:transform .3s, box-shadow .3s, border-color .3s;
+  }
+  .cock:hover{transform:translateY(-6px);box-shadow:8px 8px 0 var(--red);border-color:var(--red)}
   .cock img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
-  .cock:hover img{transform:scale(1.05)}
-  .cock .label{position:absolute;left:0;right:0;bottom:0;padding:14px 16px;background:linear-gradient(180deg,transparent,rgba(0,0,0,.92))}
-  .cock .label small{display:inline-block;background:var(--red);color:#fff;font-family:'Anton',sans-serif;font-size:11px;letter-spacing:.22em;padding:2px 7px;margin-bottom:6px;text-transform:uppercase}
-  .cock .label b{display:block;font-family:'Archivo Black',sans-serif;font-size:18px;color:#fff;text-transform:uppercase;line-height:1.1}
+  .cock:hover img{transform:scale(1.04)}
+  .cock .label{position:absolute;left:0;right:0;bottom:0;padding:22px 24px;background:linear-gradient(180deg,transparent,rgba(0,0,0,.94))}
+  .cock .label small{display:inline-block;background:var(--red);color:#fff;font-family:'Anton',sans-serif;font-size:12px;letter-spacing:.24em;padding:3px 10px;margin-bottom:8px;text-transform:uppercase}
+  .cock .label b{display:block;font-family:'Archivo Black',sans-serif;font-size:24px;color:#fff;text-transform:uppercase;line-height:1.1}
+  .cock-hint{display:block;text-align:center;color:var(--muted);font-family:'Anton',sans-serif;letter-spacing:.32em;font-size:12px;margin-top:12px;text-transform:uppercase}
+  .cock-hint::before{content:"← "}.cock-hint::after{content:" →"}
 
   /* CONTACT — black */
   .contact{background:var(--black);color:#fff;text-align:center}
@@ -231,17 +270,17 @@
   /* ===================== MOBILE TUNING ===================== */
   @media (max-width:880px){
     .hero{padding:90px 18px 0}
-    .hero-inner{grid-template-columns:1fr;gap:22px;padding-bottom:22px;display:flex;flex-direction:column}
-    .hero .copy{order:2}
-    .hero .figure{order:1;justify-self:center;max-width:330px;width:100%;margin:0 auto}
+    .hero-inner{gap:20px;padding-bottom:22px}
+    .hero .figure{max-width:320px;width:100%}
     .hero .figure img{max-height:440px}
+    .hero .hero-script{font-size:42px;left:-10px;top:14%}
     .hero h1{display:none}                  /* Hide PORTFOLIO headline on phone */
     .hero .yr{top:64px;right:18px;font-size:16px}
-    .hero .kicker{font-size:11px;letter-spacing:.22em;text-align:center}
-    .hero .sub{font-size:14px;max-width:100%;line-height:1.6;text-align:center}
-    .hero .ctas{justify-content:center;gap:10px}
+    .hero .kicker{font-size:11px;letter-spacing:.22em}
+    .hero .sub{font-size:14px;line-height:1.6}
+    .hero .ctas{gap:10px}
     .hero .ctas .btn{padding:12px 16px;font-size:11px;letter-spacing:.18em}
-    .roles-loop{font-size:22px;margin-top:24px;gap:8px 10px;justify-content:center}
+    .roles-loop{font-size:22px;margin-top:22px;gap:8px 10px}
     .hero .marquee{margin-top:22px;padding:10px 0}
     .hero .marquee .track{font-size:13px}
   }
@@ -301,12 +340,12 @@
     .skill h4{font-size:17px;color:#fff}
     .skill p{font-size:13px;color:rgba(255,255,255,.85)}
 
-    /* COCKTAILS — one at a time scroll */
-    .cock-grid{grid-template-columns:1fr;gap:14px;max-width:380px;margin:0 auto}
-    .cock{border-width:3px;aspect-ratio:3/4}
-    .cock .label{padding:14px 14px}
-    .cock .label small{font-size:10px;letter-spacing:.22em}
-    .cock .label b{font-size:17px}
+    /* COCKTAILS — one card per viewport, swipe to next */
+    .cock-scroll{gap:16px;padding:8px 16px 18px;scroll-padding:0 16px}
+    .cock-scroll .cock{flex:0 0 86vw;border-width:3px}
+    .cock .label{padding:18px 18px}
+    .cock .label small{font-size:11px;letter-spacing:.22em}
+    .cock .label b{font-size:20px}
 
     /* CONTACT */
     .contact h2{font-size:44px}
@@ -345,18 +384,19 @@
   <div class="grid-bg"></div>
   <div class="yr">2026</div>
   <div class="hero-inner">
-    <div class="reveal">
+    <div class="figure reveal">
+      <img src="aryan-formal1.jpeg" alt="Aryan Kapta"/>
+      <span class="hero-script">Aryan&nbsp;Kapta</span>
+    </div>
+    <div class="copy-wrap reveal">
       <div class="kicker">★ <span class="red">PROFESSIONAL</span> BARTENDER · MIXOLOGIST</div>
-      <h1>PORT<span class="hl">FOLIO</span><span class="scribble">aryan!</span></h1>
+      <h1>PORT<span class="hl">FOLIO</span></h1>
       <p class="sub">Five years behind premium bars, from a Greek tavern at Goa sunset to a 5-star palace in Srinagar, and now serving the floors of Dubai. Craft cocktails, flair, and unforgettable guests.</p>
       <div class="ctas">
         <a class="btn" href="#experience">VIEW EXPERIENCE</a>
         <a class="btn ghost" href="#contact">GET IN TOUCH</a>
       </div>
       <div class="roles-loop" id="rolesLoop"></div>
-    </div>
-    <div class="figure reveal">
-      <img src="aryan-formal1.jpeg" alt="Aryan Kapta"/>
     </div>
   </div>
   <div class="marquee">
@@ -524,13 +564,14 @@
       <div class="section-tag">Signature Creations</div>
       <h2 class="h-mega">ORIGINALS,<br/>POURED WITH <span class="hl">INTENT.</span></h2>
     </div>
-    <div class="cock-grid reveal">
+    <div class="cock-scroll reveal">
       <div class="cock"><img src="mastiha-fizz.jpeg" alt="Mastiha Fizz"/><div class="label"><small>Signature 01</small><b>Mastiha Fizz</b></div></div>
       <div class="cock"><img src="Nigroni 2.0.jpeg" alt="Nigroni 2.0"/><div class="label"><small>Signature 02</small><b>Nigroni 2.0</b></div></div>
       <div class="cock"><img src="twisted-hot-toddy.jpeg" alt="Twisted Hot Toddy"/><div class="label"><small>Signature 03</small><b>Twisted Hot Toddy</b></div></div>
       <div class="cock"><img src="watermelon-whisper.jpeg" alt="Watermelon Whisper"/><div class="label"><small>Signature 04</small><b>Watermelon Whisper</b></div></div>
       <div class="cock"><img src="beach-kanela..jpeg" alt="Beach Kanela"/><div class="label"><small>Signature 05</small><b>Beach Kanela</b></div></div>
     </div>
+    <small class="cock-hint">Swipe / Scroll to explore</small>
   </div>
 </section>
 
