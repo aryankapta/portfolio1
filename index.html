@@ -387,13 +387,13 @@
     .about .side .frame{max-width:360px;margin:0 auto;aspect-ratio:4/5;transform:rotate(0);border-width:4px}
     .about .side .badge{display:none}
     .about .side .meta{max-width:360px;margin:18px auto 0;gap:10px}
-    /* Glassmorphism on meta cards */
+    /* Solid black meta cards for clear visibility */
     .about .side .meta div{
-      background:rgba(13,13,13,.55);
-      backdrop-filter:blur(18px) saturate(1.2);
-      -webkit-backdrop-filter:blur(18px) saturate(1.2);
-      border:1px solid rgba(255,255,255,.08);
+      background:var(--black);
+      border:1px solid rgba(255,255,255,.06);
       padding:14px;
+      backdrop-filter:none;
+      -webkit-backdrop-filter:none;
     }
 
     /* EXPERIENCE — glass jobs */
