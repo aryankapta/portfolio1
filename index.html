@@ -433,6 +433,7 @@
      soft inner highlight, and a moving shine on hover. */
   .liquid-glass{
     position:relative;
+    border-radius:18px;
     background:rgba(255,255,255,.06);
     backdrop-filter:blur(22px) saturate(1.8);
     -webkit-backdrop-filter:blur(22px) saturate(1.8);
@@ -450,6 +451,8 @@
                backdrop-filter .35s ease;
     overflow:hidden;isolation:isolate;
   }
+  .liquid-glass::before,
+  .liquid-glass::after{border-radius:inherit}
   .liquid-glass::before{
     content:"";position:absolute;inset:0;pointer-events:none;z-index:-1;
     background:
