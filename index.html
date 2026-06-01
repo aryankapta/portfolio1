@@ -355,6 +355,57 @@
   .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease, transform .7s ease}
   .reveal.in{opacity:1;transform:none}
 
+  /* ========== APPLE-STYLE LIQUID GLASS ========== */
+  /* Translucent panel that picks up colour behind it, with a rim light,
+     soft inner highlight, and a moving shine on hover. */
+  .liquid-glass{
+    position:relative;
+    background:rgba(255,255,255,.06);
+    backdrop-filter:blur(22px) saturate(1.8);
+    -webkit-backdrop-filter:blur(22px) saturate(1.8);
+    border:1px solid rgba(255,255,255,.22);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.45),
+      inset 0 -1px 1px rgba(255,255,255,.08),
+      inset 1px 0 0 rgba(255,255,255,.10),
+      inset -1px 0 0 rgba(255,255,255,.10),
+      0 10px 32px rgba(0,0,0,.28);
+    transition:transform .35s cubic-bezier(.2,.7,.2,1),
+               background .35s ease,
+               border-color .35s ease,
+               box-shadow .35s ease,
+               backdrop-filter .35s ease;
+    overflow:hidden;isolation:isolate;
+  }
+  .liquid-glass::before{
+    content:"";position:absolute;inset:0;pointer-events:none;z-index:-1;
+    background:
+      radial-gradient(120% 70% at 20% -10%, rgba(255,255,255,.30) 0%, rgba(255,255,255,0) 55%),
+      radial-gradient(80% 60% at 110% 110%, rgba(255,255,255,.10) 0%, rgba(255,255,255,0) 60%);
+    transition:opacity .4s ease, transform .6s cubic-bezier(.2,.7,.2,1);
+  }
+  .liquid-glass::after{
+    content:"";position:absolute;inset:0;pointer-events:none;z-index:-1;
+    background:linear-gradient(115deg, rgba(255,255,255,0) 30%, rgba(255,255,255,.18) 50%, rgba(255,255,255,0) 70%);
+    transform:translateX(-120%);
+    transition:transform .9s cubic-bezier(.2,.7,.2,1);
+  }
+  .liquid-glass:hover{
+    background:rgba(255,255,255,.12);
+    border-color:rgba(255,255,255,.42);
+    transform:translateY(-4px);
+    backdrop-filter:blur(28px) saturate(2);
+    -webkit-backdrop-filter:blur(28px) saturate(2);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.6),
+      inset 0 -1px 2px rgba(255,255,255,.12),
+      inset 1px 0 0 rgba(255,255,255,.18),
+      inset -1px 0 0 rgba(255,255,255,.18),
+      0 18px 50px rgba(0,0,0,.36);
+  }
+  .liquid-glass:hover::before{transform:scale(1.06)}
+  .liquid-glass:hover::after{transform:translateX(120%)}
+
   /* ===================== MOBILE TUNING ===================== */
   @media (max-width:880px){
     .hero{padding:80px 0 0}
@@ -549,10 +600,10 @@
         <div class="badge">EST. 2020</div>
       </div>
       <div class="meta">
-        <div><b>Based</b><span>Dubai, UAE</span></div>
-        <div><b>Origin</b><span>Himachal Pradesh</span></div>
-        <div><b>Specialty</b><span>Craft · Flair</span></div>
-        <div><b>Languages</b><span>English · Hindi</span></div>
+        <div class="liquid-glass"><b>Based</b><span>Dubai, UAE</span></div>
+        <div class="liquid-glass"><b>Origin</b><span>Himachal Pradesh</span></div>
+        <div class="liquid-glass"><b>Specialty</b><span>Craft · Flair</span></div>
+        <div class="liquid-glass"><b>Languages</b><span>English · Hindi</span></div>
       </div>
     </aside>
   </div>
@@ -574,7 +625,7 @@
     </div>
 
     <div class="jobs reveal">
-      <article class="job">
+      <article class="job liquid-glass">
         <div class="when">OCT 2025<br/><small>PRESENT</small></div>
         <div>
           <h3>BARTENDER</h3>
@@ -585,7 +636,7 @@
         <div class="pill">CURRENT</div>
       </article>
 
-      <article class="job">
+      <article class="job liquid-glass">
         <div class="when">OCT 2023 to JUN 2025<br/><small>1 YR 7 MO</small></div>
         <div>
           <h3>BARTENDER &amp; TEAM LEADER</h3>
@@ -596,7 +647,7 @@
         <div class="pill gray">5★ HOTEL</div>
       </article>
 
-      <article class="job">
+      <article class="job liquid-glass">
         <div class="when">SEP 2022 to AUG 2023<br/><small>10 MO</small></div>
         <div>
           <h3>BARTENDER</h3>
@@ -607,7 +658,7 @@
         <div class="pill gray">DESTINATION</div>
       </article>
 
-      <article class="job">
+      <article class="job liquid-glass">
         <div class="when">NOV 2021 to AUG 2022<br/><small>11 MO</small></div>
         <div>
           <h3>BARTENDER · ASSISTANT</h3>
@@ -618,7 +669,7 @@
         <div class="pill gray">PROMOTED</div>
       </article>
 
-      <article class="job">
+      <article class="job liquid-glass">
         <div class="when">FEB 2021 to OCT 2021<br/><small>11 MO</small></div>
         <div>
           <h3>ASSISTANT BARTENDER</h3>
@@ -648,14 +699,14 @@
       <h2 class="h-mega">WHAT I BRING<br/>TO THE <span class="hl">BAR.</span></h2>
     </div>
     <div class="skills-grid reveal">
-      <div class="skill"><span class="num">01</span><h4>Craft Cocktails</h4><p>Classics and originals. Working knowledge of spirits, liqueurs and flavour pairing.</p></div>
-      <div class="skill"><span class="num">02</span><h4>Flair Bartending</h4><p>Showmanship, bottle work, pours and presentation that earn the room.</p></div>
-      <div class="skill"><span class="num">03</span><h4>Speed &amp; Volume</h4><p>Consistent build quality under peak service pressure without dropping the experience.</p></div>
-      <div class="skill"><span class="num">04</span><h4>Guest Relations</h4><p>Reading the room, recommending premium pours, building regulars one shift at a time.</p></div>
-      <div class="skill"><span class="num">05</span><h4>Menu Design</h4><p>Signature menus balancing creativity, cost, and the property's brand voice.</p></div>
-      <div class="skill"><span class="num">06</span><h4>Inventory Control</h4><p>Par levels, stock ordering, pour-cost discipline and minimising waste.</p></div>
-      <div class="skill"><span class="num">07</span><h4>Presentation</h4><p>Garnish, glassware, ice. The small details that turn a drink into a moment.</p></div>
-      <div class="skill"><span class="num">08</span><h4>Safety &amp; Hygiene</h4><p>Food-safety protocols, cleanliness, and responsible alcohol service to standard.</p></div>
+      <div class="skill liquid-glass"><span class="num">01</span><h4>Craft Cocktails</h4><p>Classics and originals. Working knowledge of spirits, liqueurs and flavour pairing.</p></div>
+      <div class="skill liquid-glass"><span class="num">02</span><h4>Flair Bartending</h4><p>Showmanship, bottle work, pours and presentation that earn the room.</p></div>
+      <div class="skill liquid-glass"><span class="num">03</span><h4>Speed &amp; Volume</h4><p>Consistent build quality under peak service pressure without dropping the experience.</p></div>
+      <div class="skill liquid-glass"><span class="num">04</span><h4>Guest Relations</h4><p>Reading the room, recommending premium pours, building regulars one shift at a time.</p></div>
+      <div class="skill liquid-glass"><span class="num">05</span><h4>Menu Design</h4><p>Signature menus balancing creativity, cost, and the property's brand voice.</p></div>
+      <div class="skill liquid-glass"><span class="num">06</span><h4>Inventory Control</h4><p>Par levels, stock ordering, pour-cost discipline and minimising waste.</p></div>
+      <div class="skill liquid-glass"><span class="num">07</span><h4>Presentation</h4><p>Garnish, glassware, ice. The small details that turn a drink into a moment.</p></div>
+      <div class="skill liquid-glass"><span class="num">08</span><h4>Safety &amp; Hygiene</h4><p>Food-safety protocols, cleanliness, and responsible alcohol service to standard.</p></div>
     </div>
   </div>
 </section>
